@@ -1,24 +1,26 @@
 import React from "react";
+import uuid from "uuid";
 //Data about the list of restaurants in Helsinki
 import RestaurantData from "./data/restaurants.json";
-
 import SortDropdown from "./SortDropdown";
 import DisplayList from "./DisplayList";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurants: []
-    };
-  }
+  state = {
+    restaurants: []
+  };
 
-  // Update the state "restaurants" with a newly arranged array.
   createRestaurantArr = dropDownVal => {
     let restaurantList = RestaurantData.restaurants;
-    // Sort the original data in ascending or descending alphabetical order based on the dropdown button value.
+
+    //Set a unique id to each restaurant to use as React key later on.
+    for (let elem of restaurantList) {
+      elem.id = uuid();
+    }
+    // Sort the original data in ascending order when the dropdown is changed to "acsending order"
     if (dropDownVal === "AtoZ") {
       restaurantList = restaurantList.sort((a, b) => {
+        //use a restaurant's name to compare element and to sort.
         let restaurantA = a.name;
         let restaurantB = b.name;
         if (restaurantA < restaurantB) {
@@ -27,8 +29,11 @@ class App extends React.Component {
           return 1;
         }
       });
-    } else if (dropDownVal === "ZtoA") {
+    }
+    //Sort the original data in descending order when the dropdown is changed to "descendidng order".
+    else if (dropDownVal === "ZtoA") {
       restaurantList = restaurantList.sort((a, b) => {
+        //use a restaurant's name to compare element and to sort.
         let restaurantA = a.name;
         let restaurantB = b.name;
         if (restaurantB < restaurantA) {
@@ -38,15 +43,16 @@ class App extends React.Component {
         }
       });
     }
-
+    // Update the state "restaurants" with a newly arranged array.
     this.setState({ restaurants: restaurantList });
   };
 
-  // Load the list of restaurants in ascending order.
+  // Display the list of restaurants in ascending order when the app is loaded.
   componentDidMount() {
     this.createRestaurantArr("AtoZ");
   }
 
+  // Display the drop down button and and the list of restaurants.
   render() {
     return (
       <div className="ui container">

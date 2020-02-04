@@ -4,14 +4,12 @@ class SortDropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = { dropDownValue: "AtoZ" };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
   //When a user changes the dropdown option
   handleChange = event => {
     event.preventDefault();
-
+    //Take the user input and set it to the variable 'userChoice'.
     let userChoice = event.target.value;
     //Render the list of restaurants based on the user choice.
     this.props.createRestaurantArr(userChoice);

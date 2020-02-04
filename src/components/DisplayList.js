@@ -6,11 +6,18 @@ import DisplayItem from "./DisplayItem";
 const DisplayList = ({ restaurants }) => {
   return (
     <div className="ui link cards">
-      {restaurants.map((restaurant, index) => {
-        const { delivery_price, description, image, name, tags } = restaurant;
+      {restaurants.map(restaurant => {
+        const {
+          delivery_price,
+          description,
+          image,
+          name,
+          tags,
+          id
+        } = restaurant;
         return (
           <DisplayItem
-            key={index}
+            key={id}
             delivery_price={delivery_price}
             description={description}
             image={image}
