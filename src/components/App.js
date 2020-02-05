@@ -1,6 +1,6 @@
 import React from "react";
+//uuid is npm package to create a unique id to each restaurant element in the restaurants array.
 import uuid from "uuid";
-//Data about the list of restaurants in Helsinki
 import RestaurantData from "./data/restaurants.json";
 import SortDropdown from "./SortDropdown";
 import DisplayList from "./DisplayList";
@@ -17,10 +17,11 @@ class App extends React.Component {
     for (let elem of restaurantList) {
       elem.id = uuid();
     }
+
     // Sort the original data in ascending order when the dropdown is changed to "acsending order"
     if (dropDownVal === "AtoZ") {
       restaurantList = restaurantList.sort((a, b) => {
-        //use a restaurant's name to compare element and to sort.
+        //use the name of restaurants to arrange in alphabetical order.
         let restaurantA = a.name;
         let restaurantB = b.name;
         if (restaurantA < restaurantB) {
@@ -33,7 +34,6 @@ class App extends React.Component {
     //Sort the original data in descending order when the dropdown is changed to "descendidng order".
     else if (dropDownVal === "ZtoA") {
       restaurantList = restaurantList.sort((a, b) => {
-        //use a restaurant's name to compare element and to sort.
         let restaurantA = a.name;
         let restaurantB = b.name;
         if (restaurantB < restaurantA) {

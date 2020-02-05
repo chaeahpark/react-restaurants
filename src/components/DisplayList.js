@@ -1,8 +1,6 @@
 import React from "react";
 import DisplayItem from "./DisplayItem";
 
-//TODO: find a way to create a unique key.
-
 const DisplayList = ({ restaurants }) => {
   return (
     <div className="ui link cards">

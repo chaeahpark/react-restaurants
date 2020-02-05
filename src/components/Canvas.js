@@ -1,9 +1,6 @@
 import React from "react";
 
 class Canvas extends React.Component {
-  //TODO: Load image in canvas tag
-  //TODO: Use blurhash library
-  // canvas
   constructor(props) {
     super(props);
     this.imageSrc = this.props.image;
